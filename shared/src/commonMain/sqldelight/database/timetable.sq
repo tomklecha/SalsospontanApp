@@ -1,0 +1,20 @@
+CREATE TABLE table_artists(
+    uid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    artistName TEXT NOT NULL,
+    artistDescription TEXT NOT NULL
+);
+
+getAllArtists:
+SELECT *
+FROM table_artists
+WHERE uid > 0;
+
+insertAll:
+INSERT OR REPLACE
+INTO table_artists
+(
+uid,
+artistName,
+artistDescription
+)
+VALUES(?,?,?);

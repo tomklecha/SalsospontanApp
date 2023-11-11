@@ -8,8 +8,8 @@ androidx-activityCompose = "1.7.2"
 hilt = "2.42"
 hiltCompiler = "1.0.0"
 ktlint = "11.6.1"
-sqlDelight = "1.5.4"
-sqlDelightGradle = "1.5.3"
+sqlDelight = "2.0.0"
+sqlDelightGradle = "2.0.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -26,10 +26,10 @@ hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", ve
 hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompiler" }
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltCompiler" }
 
-sqldelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqlDelight" }
-sqldelight-androiddriver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqlDelight" }
-sqldelight-nativedriver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqlDelight" }
-sqldelight-coroutinesextensions = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
+sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelight" }
+sqldelight-androiddriver = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelight" }
+sqldelight-nativedriver = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelight" }
+sqldelight-coroutinesextensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -39,4 +39,4 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
-sqlDelight = { id = "com.squareup.sqldelight", version.ref = "sqlDelightGradle" }
+sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelightGradle" }
