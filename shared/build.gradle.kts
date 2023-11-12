@@ -71,7 +71,6 @@ android {
     }
 }
 
-
 sqldelight {
     databases {
         create("SpontanDatabase") {

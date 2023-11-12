@@ -1,4 +1,4 @@
-CREATE TABLE table_artists(
+CREATE TABLE artistEntity(
     uid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     artistName TEXT NOT NULL,
     artistDescription TEXT NOT NULL
@@ -6,12 +6,12 @@ CREATE TABLE table_artists(
 
 getAllArtists:
 SELECT *
-FROM table_artists
+FROM artistEntity
 WHERE uid > 0;
 
-insertAll:
+insertArtist:
 INSERT OR REPLACE
-INTO table_artists
+INTO artistEntity
 (
 uid,
 artistName,

@@ -1,7 +1,9 @@
 package com.tkdev.salsospontanapp.domain.artists
 
-interface ArtistDataSource {
-    fun getAllArtists()
+import com.tkdev.salsospontanapp.util.CommonFlow
 
-    fun insertAll(artists: List<Artist>)
+interface ArtistDataSource {
+    fun getAllArtists(): CommonFlow<List<Artist>>
+
+    suspend fun insertArtist(artist: Artist)
 }
