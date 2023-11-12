@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
@@ -32,11 +33,18 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.sqldelight.runtime)
+                implementation(libs.sqldelight.coroutinesextensions)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(libs.kotlin.test)
+            }
+        }
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.sqldelight.androiddriver)
             }
         }
         val iosX64Main by getting
@@ -49,6 +57,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
 
             dependencies {
+                implementation(libs.sqldelight.nativedriver)
             }
         }
     }
@@ -59,5 +68,13 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 28
+    }
+}
+
+sqldelight {
+    databases {
+        create("SpontanDatabase") {
+            packageName.set("com.tkdev.salsospontanapp.database")
+        }
     }
 }
