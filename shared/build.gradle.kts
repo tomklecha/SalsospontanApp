@@ -33,6 +33,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.koin.core)
                 implementation(libs.sqldelight.runtime)
                 implementation(libs.sqldelight.coroutinesextensions)
             }

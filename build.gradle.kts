@@ -19,7 +19,6 @@ plugins {
     alias(libs.plugins.kotlinCocoapods).apply(false)
     alias(libs.plugins.ktlint).apply(false)
     alias(libs.plugins.sqlDelight).apply(false)
-    alias(libs.plugins.hilt).apply(false)
 }
 
 allprojects {
