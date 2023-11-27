@@ -11,7 +11,7 @@ import com.tkdev.salsospontanapp.util.toCommonFlow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 
-class SqlDelightHistoryDataSource(
+class SqlDelightArtistDataSource(
     db: SpontanDatabase
 ) : ArtistDataSource {
 
