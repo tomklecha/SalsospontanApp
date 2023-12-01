@@ -9,6 +9,6 @@ actual class DatabaseDriverFactory(
     private val context: Context
 ) {
     actual fun create(): SqlDriver {
-        return AndroidSqliteDriver(SpontanDatabase.Schema, context, "spontanDatabase.db")
+        return AndroidSqliteDriver(SpontanDatabase.Schema, context, "timetable.db")
     }
 }

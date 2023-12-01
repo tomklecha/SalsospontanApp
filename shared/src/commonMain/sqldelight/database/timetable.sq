@@ -1,5 +1,5 @@
 CREATE TABLE artistEntity(
-    uid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    uid INTEGER NOT NULL PRIMARY KEY,
     artistName TEXT NOT NULL,
     artistDescription TEXT NOT NULL
 );
