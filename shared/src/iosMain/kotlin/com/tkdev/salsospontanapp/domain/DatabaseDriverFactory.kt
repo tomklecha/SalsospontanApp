@@ -7,6 +7,6 @@ import com.tkdev.salsospontanapp.database.SpontanDatabase
 actual class DatabaseDriverFactory {
 
     actual fun create(): SqlDriver {
-        return NativeSqliteDriver(SpontanDatabase.Schema, "spontanDatabase.db")
+        return NativeSqliteDriver(SpontanDatabase.Schema, "timetable.db")
     }
 }
