@@ -5,6 +5,7 @@ kotlinx_coroutines = "1.7.3"
 compose = "1.5.1"
 compose-compiler = "1.5.3"
 compose-material3 = "1.1.2"
+compose-navigation = "2.7.5"
 androidx-activityCompose = "1.7.2"
 
 koin_core = "3.5.0"
@@ -29,6 +30,7 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = 
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
+compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "compose-navigation" }
 
 koin_core = { module = "io.insert-koin:koin-core", version.ref = "koin_core" }
 koin_android = { module = "io.insert-koin:koin-android", version.ref = "koin_android" }
