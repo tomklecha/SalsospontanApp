@@ -5,6 +5,7 @@ import com.tkdev.salsospontanapp.domain.artists.Dancer
 import com.tkdev.salsospontanapp.domain.artists.DeeJay
 import com.tkdev.salsospontanapp.domain.artists.Musician
 import com.tkdev.salsospontanapp.domain.venues.Venue
+import com.tkdev.salsospontanapp.domain.workshops.Workshop
 
 /*
  temporary solution, injection in DB works, but here is simpler to
@@ -37,4 +38,13 @@ val venues = listOf<Venue>(
     Venue(402, "Muchos", "WorkshopVenue"),
     Venue(403, "Słodownia", "WorkshopVenue"),
     Venue(404, "Stołówka", "WorkshopVenue")
+)
+
+val workshops = listOf<Workshop>(
+    Workshop(1001, "Timba", "newStyle"),
+    Workshop(1002, "Rumba", "newStyle"),
+    Workshop(1003, "Rueda", "newStyle"),
+    Workshop(1004, "Suelta", "newStyle"),
+    Workshop(1005, "Tropicana", "newStyle"),
+    Workshop(1006, "Son", "newStyle")
 )
