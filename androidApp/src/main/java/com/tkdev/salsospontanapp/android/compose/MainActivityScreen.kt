@@ -26,6 +26,8 @@ import com.tkdev.salsospontanapp.ui.info.compose.InfoScreen
 import com.tkdev.salsospontanapp.ui.venues.AndroidVenuesViewModel
 import com.tkdev.salsospontanapp.ui.venues.VenueEvent
 import com.tkdev.salsospontanapp.ui.venues.compose.VenuesScreen
+import com.tkdev.salsospontanapp.ui.workshops.AndroidWorkshopsViewModel
+import com.tkdev.salsospontanapp.ui.workshops.WorkshopEvent
 import com.tkdev.salsospontanapp.ui.workshops.compose.WorkshopsScreen
 import org.koin.compose.koinInject
 
@@ -83,7 +85,9 @@ fun MainActivityScreen() {
                 ArtistsScreen(state) { vm.onEvent(ArtistEvent.AddArtist) }
             }
             composable(NavigationRoutes.Workshops.route) {
-                WorkshopsScreen()
+                val vm = koinInject<AndroidWorkshopsViewModel>()
+                val state = vm.state.collectAsState()
+                WorkshopsScreen(state) { vm.onEvent(WorkshopEvent.AddWorkshop) }
             }
             composable(NavigationRoutes.Venues.route) {
                 val vm = koinInject<AndroidVenuesViewModel>()

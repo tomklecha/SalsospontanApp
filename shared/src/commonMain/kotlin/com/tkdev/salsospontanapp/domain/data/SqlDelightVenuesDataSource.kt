@@ -30,8 +30,8 @@ class SqlDelightVenuesDataSource(
     override suspend fun insertVenue(venue: Venue) {
         queries.insertVenue(
             uid = venue.uid,
-            venueName = venue.venueName,
-            venueDescription = venue.venueDescription
+            name = venue.venueName,
+            description = venue.venueDescription
         )
     }
 }
