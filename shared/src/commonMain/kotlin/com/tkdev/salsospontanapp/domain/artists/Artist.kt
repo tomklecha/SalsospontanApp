@@ -1,7 +1,59 @@
 package com.tkdev.salsospontanapp.domain.artists
 
-data class Artist(
-    val uid: Long?,
-    val artistName: String,
-    val artistDescription: String
-)
+const val TYPE_DANCER = "dancer"
+const val TYPE_MUSICIAN = "musician"
+const val TYPE_DEEJAY = "dj"
+
+abstract class Artist(
+    open val uid: Long?,
+    open val artistName: String,
+    open val artistDescription: String,
+    private val type: String
+) {
+    abstract fun getArtistType(): String
+}
+
+data class Dancer(
+    override val uid: Long?,
+    override val artistName: String,
+    override val artistDescription: String
+) : Artist(
+    uid = uid,
+    artistName = artistName,
+    artistDescription = artistDescription,
+    type = TYPE_DANCER
+) {
+    override fun getArtistType() = TYPE_DANCER
+}
+
+data class Musician(
+    override val uid: Long?,
+    override val artistName: String,
+    override val artistDescription: String
+) : Artist(
+    uid = uid,
+    artistName = artistName,
+    artistDescription = artistDescription,
+    type = TYPE_MUSICIAN
+) {
+    override fun getArtistType() = TYPE_MUSICIAN
+}
+
+data class DeeJay(
+    override val uid: Long?,
+    override val artistName: String,
+    override val artistDescription: String
+) : Artist(
+    uid = uid,
+    artistName = artistName,
+    artistDescription = artistDescription,
+    type = TYPE_DEEJAY
+) {
+    override fun getArtistType() = TYPE_DEEJAY
+}
+
+sealed class ArtistType(val type: String) {
+    data object Dancer : ArtistType(TYPE_DANCER)
+    data object Musician : ArtistType(TYPE_MUSICIAN)
+    data object DeeJay : ArtistType(TYPE_DEEJAY)
+}

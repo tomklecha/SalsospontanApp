@@ -1,6 +1,6 @@
 package com.tkdev.salsospontanapp.ui.artists
 
-import com.tkdev.salsospontanapp.domain.artists.Artist
+import com.tkdev.salsospontanapp.db.artists
 import com.tkdev.salsospontanapp.domain.artists.ArtistDataSource
 import com.tkdev.salsospontanapp.util.toCommonStateFlow
 import kotlinx.coroutines.CoroutineScope
@@ -36,7 +36,9 @@ class ArtistViewModel(
             is ArtistEvent.AddArtist -> {
                 // cannot add artist with same uid - it is unique so it wont increment
                 viewModelScope.launch {
-                    artistDataSource.insertArtist(Artist(901, "Sheyla", "Cuban"))
+                    artists.forEach {
+                        artistDataSource.insertArtist(it)
+                    }
                     _state.update {
                         it.copy()
                     }

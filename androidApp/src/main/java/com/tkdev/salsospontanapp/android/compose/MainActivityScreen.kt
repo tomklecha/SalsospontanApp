@@ -8,6 +8,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -18,10 +19,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.tkdev.salsospontanapp.navigation.NavigationRoutes
 import com.tkdev.salsospontanapp.navigation.navigationBarItems
+import com.tkdev.salsospontanapp.ui.artists.AndroidArtistViewModel
+import com.tkdev.salsospontanapp.ui.artists.ArtistEvent
 import com.tkdev.salsospontanapp.ui.artists.compose.ArtistsScreen
 import com.tkdev.salsospontanapp.ui.info.compose.InfoScreen
 import com.tkdev.salsospontanapp.ui.venues.compose.VenuesScreen
 import com.tkdev.salsospontanapp.ui.workshops.compose.WorkshopsScreen
+import org.koin.compose.koinInject
 
 @Composable
 fun MainActivityScreen() {
@@ -72,7 +76,9 @@ fun MainActivityScreen() {
             modifier = Modifier.padding(paddingValues = paddingValues)
         ) {
             composable(NavigationRoutes.Artists.route) {
-                ArtistsScreen(/*...*/)
+                val vm = koinInject<AndroidArtistViewModel>()
+                val state = vm.state.collectAsState()
+                ArtistsScreen(state) { vm.onEvent(ArtistEvent.AddArtist) }
             }
             composable(NavigationRoutes.Workshops.route) {
                 WorkshopsScreen()

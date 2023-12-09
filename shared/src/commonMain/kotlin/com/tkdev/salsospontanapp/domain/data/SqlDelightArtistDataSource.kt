@@ -22,7 +22,7 @@ class SqlDelightArtistDataSource(
             .asFlow()
             .mapToList(Dispatchers.Default)
             .map { artists ->
-                artists.map { it.toArtist() }
+                artists.mapNotNull { it.toArtist() }
             }
             .toCommonFlow()
     }
@@ -31,7 +31,8 @@ class SqlDelightArtistDataSource(
         queries.insertArtist(
             uid = artist.uid,
             artistName = artist.artistName,
-            artistDescription = artist.artistDescription
+            artistDescription = artist.artistDescription,
+            type = artist.getArtistType()
         )
     }
 }
