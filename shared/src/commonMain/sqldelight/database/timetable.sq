@@ -20,3 +20,24 @@ artistDescription,
 type
 )
 VALUES(?,?,?,?);
+
+CREATE TABLE venueEntity(
+    uid INTEGER NOT NULL PRIMARY KEY,
+    venueName TEXT NOT NULL,
+    venueDescription TEXT NOT NULL
+);
+
+getAllVenues:
+SELECT *
+FROM venueEntity
+WHERE uid > 0;
+
+insertVenue:
+INSERT OR REPLACE
+INTO venueEntity
+(
+uid,
+venueName,
+venueDescription
+)
+VALUES (?,?,?);
