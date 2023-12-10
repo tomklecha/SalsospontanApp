@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class VenuesViewModel(
@@ -38,9 +37,6 @@ class VenuesViewModel(
                 viewModelScope.launch {
                     venues.forEach {
                         venueDataSource.insertVenue(it)
-                    }
-                    _state.update {
-                        it.copy()
                     }
                 }
             }

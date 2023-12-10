@@ -7,5 +7,6 @@ class Workshop(
     val timeSchedule: String,
     val artistPrimaryUid: Long,
     val artistSecondaryUid: Long? = null,
-    val venueUid: Long
+    val venueUid: Long,
+    var isFavourite: Boolean = false
 )

@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -20,14 +20,11 @@ import androidx.navigation.compose.rememberNavController
 import com.tkdev.salsospontanapp.navigation.NavigationRoutes
 import com.tkdev.salsospontanapp.navigation.navigationBarItems
 import com.tkdev.salsospontanapp.ui.artists.AndroidArtistViewModel
-import com.tkdev.salsospontanapp.ui.artists.ArtistEvent
 import com.tkdev.salsospontanapp.ui.artists.compose.ArtistsScreen
 import com.tkdev.salsospontanapp.ui.info.compose.InfoScreen
 import com.tkdev.salsospontanapp.ui.venues.AndroidVenuesViewModel
-import com.tkdev.salsospontanapp.ui.venues.VenueEvent
 import com.tkdev.salsospontanapp.ui.venues.compose.VenuesScreen
 import com.tkdev.salsospontanapp.ui.workshops.AndroidWorkshopsViewModel
-import com.tkdev.salsospontanapp.ui.workshops.WorkshopEvent
 import com.tkdev.salsospontanapp.ui.workshops.compose.WorkshopsScreen
 import org.koin.compose.koinInject
 
@@ -36,7 +33,7 @@ fun MainActivityScreen() {
     val navController = rememberNavController()
 
     var selectedItemIndex by rememberSaveable {
-        mutableStateOf(0)
+        mutableIntStateOf(0)
     }
 
     Scaffold(
@@ -72,6 +69,8 @@ fun MainActivityScreen() {
         /*
         TODO a bit laggy ? currently kept it, as prefer to work on app itself. To be checked
         Handle backSwipe action - just top screen ?
+        Looks like it is due to we have always recomposition
+        and we create new screen on new navigation
          */
 
         NavHost(
@@ -79,22 +78,22 @@ fun MainActivityScreen() {
             startDestination = NavigationRoutes.Artists.route,
             modifier = Modifier.padding(paddingValues = paddingValues)
         ) {
-            composable(NavigationRoutes.Artists.route) {
+            composable(route = NavigationRoutes.Artists.route) {
                 val vm = koinInject<AndroidArtistViewModel>()
-                val state = vm.state.collectAsState()
-                ArtistsScreen(state) { vm.onEvent(ArtistEvent.AddArtist) }
+                val state by vm.state.collectAsState()
+                ArtistsScreen(state, vm::onEvent)
             }
-            composable(NavigationRoutes.Workshops.route) {
+            composable(route = NavigationRoutes.Workshops.route) {
                 val vm = koinInject<AndroidWorkshopsViewModel>()
-                val state = vm.state.collectAsState()
-                WorkshopsScreen(state) { vm.onEvent(WorkshopEvent.AddWorkshop) }
+                val state by vm.state.collectAsState()
+                WorkshopsScreen(state, vm::onEvent)
             }
-            composable(NavigationRoutes.Venues.route) {
+            composable(route = NavigationRoutes.Venues.route) {
                 val vm = koinInject<AndroidVenuesViewModel>()
-                val state = vm.state.collectAsState()
-                VenuesScreen(state) { vm.onEvent(VenueEvent.AddVenue) }
+                val state by vm.state.collectAsState()
+                VenuesScreen(state, { })
             }
-            composable(NavigationRoutes.Info.route) {
+            composable(route = NavigationRoutes.Info.route) {
                 InfoScreen()
             }
         }

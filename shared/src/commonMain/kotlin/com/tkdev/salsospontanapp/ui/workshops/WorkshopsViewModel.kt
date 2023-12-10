@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class WorkshopsViewModel(
@@ -79,9 +78,11 @@ class WorkshopsViewModel(
                     workshops.forEach {
                         workshopsDataSource.insertWorkshop(it)
                     }
-                    _state.update {
-                        it.copy()
-                    }
+                }
+            }
+            is WorkshopEvent.AddToFavourite -> {
+                viewModelScope.launch {
+                    workshopsDataSource.updateFavourite(event.workshopUid, event.isFavourite)
                 }
             }
             else -> {}

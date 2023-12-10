@@ -16,7 +16,7 @@ koin_compose_jb = "1.1.0"
 
 hiltCompiler = "1.0.0"
 ktlint = "11.6.1"
-sqlDelight = "2.0.0"
+sqlDelight = "2.0.1"
 sqlDelightGradle = "2.0.0"
 
 [libraries]

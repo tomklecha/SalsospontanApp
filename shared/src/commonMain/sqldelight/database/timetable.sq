@@ -1,3 +1,5 @@
+import kotlin.Boolean;
+
 --
 --  ARTIST
 --
@@ -59,6 +61,7 @@ CREATE TABLE workshopEntity(
     name TEXT NOT NULL,
     description TEXT NOT NULL,
     timeSchedule TEXT NOT NULL,
+    isFavourite INTEGER AS Boolean NOT NULL DEFAULT 0,
     artistPrimaryUid INTEGER NOT NULL,
     artistSecondaryUid INTEGER,
     venueUid INTEGER NOT NULL,
@@ -89,10 +92,17 @@ uid,
 name,
 description,
 timeSchedule,
+isFavourite,
 artistPrimaryUid,
 artistSecondaryUid,
 venueUid
 )
-VALUES (?,?,?,?,?,?,?);
+VALUES (?,?,?,?,?,?,?,?);
+
+updateFavourite:
+UPDATE workshopEntity
+SET isFavourite = :isFavourite
+WHERE workshopEntity.uid = :workshopUid;
+
 
 
