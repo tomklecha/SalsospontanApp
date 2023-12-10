@@ -1,3 +1,7 @@
+--
+--  ARTIST
+--
+
 CREATE TABLE artistEntity(
     uid INTEGER NOT NULL PRIMARY KEY,
     name TEXT NOT NULL,
@@ -21,6 +25,10 @@ type
 )
 VALUES(?,?,?,?);
 
+--
+--  VENUES
+--
+
 CREATE TABLE venueEntity(
     uid INTEGER NOT NULL PRIMARY KEY,
     name TEXT NOT NULL,
@@ -42,10 +50,30 @@ description
 )
 VALUES (?,?,?);
 
+--
+--  WORKSHOP
+--
+
 CREATE TABLE workshopEntity(
     uid INTEGER NOT NULL PRIMARY KEY,
     name TEXT NOT NULL,
-    description TEXT NOT NULL
+    description TEXT NOT NULL,
+    timeSchedule TEXT NOT NULL,
+    artistPrimaryUid INTEGER NOT NULL,
+    artistSecondaryUid INTEGER,
+    venueUid INTEGER NOT NULL,
+
+    FOREIGN KEY(artistPrimaryUid)
+        REFERENCES artistEntity(uid)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY(artistSecondaryUid)
+        REFERENCES artistEntity(uid)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY(venueUid)
+        REFERENCES venueEntity(uid)
+        ON DELETE CASCADE
 );
 
 getAllWorkshops:
@@ -59,8 +87,12 @@ INTO workshopEntity
 (
 uid,
 name,
-description
+description,
+timeSchedule,
+artistPrimaryUid,
+artistSecondaryUid,
+venueUid
 )
-VALUES (?,?,?);
+VALUES (?,?,?,?,?,?,?);
 
 

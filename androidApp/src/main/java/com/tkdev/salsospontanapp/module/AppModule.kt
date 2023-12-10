@@ -27,5 +27,5 @@ val appModule = module {
     // View Models
     viewModel { AndroidArtistViewModel(get()) }
     viewModel { AndroidVenuesViewModel(get()) }
-    viewModel { AndroidWorkshopsViewModel(get()) }
+    viewModel { AndroidWorkshopsViewModel(get(), get(), get()) }
 }

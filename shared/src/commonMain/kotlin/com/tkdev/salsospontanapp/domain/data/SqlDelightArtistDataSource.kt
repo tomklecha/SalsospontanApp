@@ -30,8 +30,8 @@ class SqlDelightArtistDataSource(
     override suspend fun insertArtist(artist: Artist) {
         queries.insertArtist(
             uid = artist.uid,
-            name = artist.artistName,
-            description = artist.artistDescription,
+            name = artist.name,
+            description = artist.description,
             type = artist.getArtistType()
         )
     }

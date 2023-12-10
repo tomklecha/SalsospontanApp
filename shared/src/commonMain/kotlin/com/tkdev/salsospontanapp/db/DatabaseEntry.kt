@@ -41,10 +41,10 @@ val venues = listOf<Venue>(
 )
 
 val workshops = listOf<Workshop>(
-    Workshop(1001, "Timba", "newStyle"),
-    Workshop(1002, "Rumba", "newStyle"),
-    Workshop(1003, "Rueda", "newStyle"),
-    Workshop(1004, "Suelta", "newStyle"),
-    Workshop(1005, "Tropicana", "newStyle"),
-    Workshop(1006, "Son", "newStyle")
+    Workshop(1001, "Timba", "newStyle", "09/10/21 12:20", 901, 907, 401),
+    Workshop(1002, "Rumba", "newStyle", "09/10/21 12:20", 902, 908, 402),
+    Workshop(1003, "Rueda", "newStyle", "09/10/21 12:20", 903, 909, 403),
+    Workshop(1004, "Suelta", "newStyle", "09/10/21 12:20", 904, null, 404),
+    Workshop(1005, "Tropicana", "newStyle", "09/10/21 12:20", 905, null, 401),
+    Workshop(1006, "Son", "newStyle", "09/10/21 12:20", 906, null, 402)
 )
