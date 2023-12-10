@@ -35,7 +35,12 @@ class SqlDelightWorkshopsDataSource(
             timeSchedule = workshop.timeSchedule,
             artistPrimaryUid = workshop.artistPrimaryUid,
             artistSecondaryUid = workshop.artistSecondaryUid,
-            venueUid = workshop.venueUid
+            venueUid = workshop.venueUid,
+            isFavourite = workshop.isFavourite
         )
+    }
+
+    override suspend fun updateFavourite(workshopUid: Long, isFavourite: Boolean) {
+        queries.updateFavourite(workshopUid = workshopUid, isFavourite = isFavourite)
     }
 }

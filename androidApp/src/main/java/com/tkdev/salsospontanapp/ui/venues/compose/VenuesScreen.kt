@@ -1,22 +1,20 @@
 package com.tkdev.salsospontanapp.ui.venues.compose
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import com.tkdev.salsospontanapp.ui.ComposableTestContent
 import com.tkdev.salsospontanapp.ui.venues.VenueState
+import com.tkdev.salsospontanapp.ui.workshops.WorkshopEvent
 
 @Composable
 fun VenuesScreen(
-    uiState: State<VenueState>,
-    onEvent: () -> Unit
+    uiState: VenueState,
+    onEvent: (WorkshopEvent) -> Unit
 ) {
     ComposableTestContent(
-        modifier = Modifier.fillMaxSize().background(color = Color.Green),
-        uiState.value.venueList.size.toString(),
+        modifier = Modifier.fillMaxSize(),
+        uiState.venueList.size.toString(),
         onEvent
     )
 }
