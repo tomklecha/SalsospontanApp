@@ -31,7 +31,11 @@ class SqlDelightWorkshopsDataSource(
         queries.insertWorkshop(
             uid = workshop.uid,
             name = workshop.name,
-            description = workshop.description
+            description = workshop.description,
+            timeSchedule = workshop.timeSchedule,
+            artistPrimaryUid = workshop.artistPrimaryUid,
+            artistSecondaryUid = workshop.artistSecondaryUid,
+            venueUid = workshop.venueUid
         )
     }
 }

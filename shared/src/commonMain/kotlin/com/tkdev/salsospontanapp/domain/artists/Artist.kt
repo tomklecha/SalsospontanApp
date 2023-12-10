@@ -6,8 +6,8 @@ const val TYPE_DEEJAY = "dj"
 
 abstract class Artist(
     open val uid: Long?,
-    open val artistName: String,
-    open val artistDescription: String,
+    open val name: String,
+    open val description: String,
     private val type: String
 ) {
     abstract fun getArtistType(): String
@@ -15,12 +15,12 @@ abstract class Artist(
 
 data class Dancer(
     override val uid: Long?,
-    override val artistName: String,
-    override val artistDescription: String
+    override val name: String,
+    override val description: String
 ) : Artist(
     uid = uid,
-    artistName = artistName,
-    artistDescription = artistDescription,
+    name = name,
+    description = description,
     type = TYPE_DANCER
 ) {
     override fun getArtistType() = TYPE_DANCER
@@ -28,12 +28,12 @@ data class Dancer(
 
 data class Musician(
     override val uid: Long?,
-    override val artistName: String,
-    override val artistDescription: String
+    override val name: String,
+    override val description: String
 ) : Artist(
     uid = uid,
-    artistName = artistName,
-    artistDescription = artistDescription,
+    name = name,
+    description = description,
     type = TYPE_MUSICIAN
 ) {
     override fun getArtistType() = TYPE_MUSICIAN
@@ -41,12 +41,12 @@ data class Musician(
 
 data class DeeJay(
     override val uid: Long?,
-    override val artistName: String,
-    override val artistDescription: String
+    override val name: String,
+    override val description: String
 ) : Artist(
     uid = uid,
-    artistName = artistName,
-    artistDescription = artistDescription,
+    name = name,
+    description = description,
     type = TYPE_DEEJAY
 ) {
     override fun getArtistType() = TYPE_DEEJAY

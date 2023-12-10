@@ -13,23 +13,23 @@ fun ArtistEntity.toArtist(): Artist? =
 fun ArtistEntity.toDancer(): Dancer {
     return Dancer(
         uid = uid,
-        artistName = name,
-        artistDescription = description
+        name = name,
+        description = description
     )
 }
 
 fun ArtistEntity.toMusician(): Musician {
     return Musician(
         uid = uid,
-        artistName = name,
-        artistDescription = description
+        name = name,
+        description = description
     )
 }
 
 fun ArtistEntity.toDeeJay(): DeeJay {
     return DeeJay(
         uid = uid,
-        artistName = name,
-        artistDescription = description
+        name = name,
+        description = description
     )
 }

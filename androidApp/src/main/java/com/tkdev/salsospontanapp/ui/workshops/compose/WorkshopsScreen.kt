@@ -7,16 +7,16 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.tkdev.salsospontanapp.ui.ComposableTestContent
-import com.tkdev.salsospontanapp.ui.workshops.WorkshopState
+import com.tkdev.salsospontanapp.ui.workshops.FullWorkshopState
 
 @Composable
 fun WorkshopsScreen(
-    uiState: State<WorkshopState>,
+    uiState: State<FullWorkshopState>,
     onEvent: () -> Unit
 ) {
     ComposableTestContent(
         modifier = Modifier.fillMaxSize().background(color = Color.Yellow),
-        uiState.value.workshopsList.size.toString(),
+        uiState.value.fullWorkshopsList.size.toString(),
         onEvent
     )
 }
