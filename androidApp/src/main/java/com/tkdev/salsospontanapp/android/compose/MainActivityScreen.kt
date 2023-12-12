@@ -10,14 +10,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.tkdev.salsospontanapp.navigation.NavigationRoutes
+import com.tkdev.salsospontanapp.navigation.NavigationActions
+import com.tkdev.salsospontanapp.navigation.TopLevelDestination
 import com.tkdev.salsospontanapp.navigation.navigationBarItems
 import com.tkdev.salsospontanapp.ui.artists.AndroidArtistViewModel
 import com.tkdev.salsospontanapp.ui.artists.compose.ArtistsScreen
@@ -31,33 +31,30 @@ import org.koin.compose.koinInject
 @Composable
 fun MainActivityScreen() {
     val navController = rememberNavController()
-
-    var selectedItemIndex by rememberSaveable {
-        mutableIntStateOf(0)
+    val navigationActions = remember(navController) {
+        NavigationActions(navController)
     }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val selectedDestination =
+        navBackStackEntry?.destination?.route ?: TopLevelDestination.Artists
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
             NavigationBar {
-                navigationBarItems.forEachIndexed { index, item ->
+                navigationBarItems.forEach { destination ->
                     NavigationBarItem(
-                        selected = selectedItemIndex == index,
+                        selected = selectedDestination == destination.route,
                         onClick = {
-                            selectedItemIndex = index
-                            navController.navigate(item.title)
+                            navigationActions.navigateTo(destination)
                         },
                         label = {
-                            Text(text = item.title)
+                            Text(text = destination.title)
                         },
                         icon = {
                             Icon(
-                                imageVector = if (index == selectedItemIndex) {
-                                    item.selectedIcon
-                                } else {
-                                    item.unselectedIcon
-                                },
-                                contentDescription = item.title
+                                imageVector = destination.selectedIcon,
+                                contentDescription = destination.title
                             )
                         }
                     )
@@ -66,34 +63,27 @@ fun MainActivityScreen() {
         }
     ) { paddingValues ->
 
-        /*
-        TODO a bit laggy ? currently kept it, as prefer to work on app itself. To be checked
-        Handle backSwipe action - just top screen ?
-        Looks like it is due to we have always recomposition
-        and we create new screen on new navigation
-         */
-
         NavHost(
             navController = navController,
-            startDestination = NavigationRoutes.Artists.route,
+            startDestination = TopLevelDestination.Artists.route,
             modifier = Modifier.padding(paddingValues = paddingValues)
         ) {
-            composable(route = NavigationRoutes.Artists.route) {
+            composable(route = TopLevelDestination.Artists.route) {
                 val vm = koinInject<AndroidArtistViewModel>()
                 val state by vm.state.collectAsState()
                 ArtistsScreen(state, vm::onEvent)
             }
-            composable(route = NavigationRoutes.Workshops.route) {
+            composable(route = TopLevelDestination.Workshops.route) {
                 val vm = koinInject<AndroidWorkshopsViewModel>()
                 val state by vm.state.collectAsState()
                 WorkshopsScreen(state, vm::onEvent)
             }
-            composable(route = NavigationRoutes.Venues.route) {
+            composable(route = TopLevelDestination.Venues.route) {
                 val vm = koinInject<AndroidVenuesViewModel>()
                 val state by vm.state.collectAsState()
                 VenuesScreen(state, { })
             }
-            composable(route = NavigationRoutes.Info.route) {
+            composable(route = TopLevelDestination.Info.route) {
                 InfoScreen()
             }
         }
