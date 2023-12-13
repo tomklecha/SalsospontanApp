@@ -36,7 +36,7 @@ fun WorkshopsScreen(
         ComposableTestContent(
             modifier = Modifier,
             workshopList.size.toString(),
-            onEvent
+            { }
         )
         Spacer(modifier = Modifier.height(30.dp))
         LazyColumn(

@@ -15,6 +15,6 @@ fun VenuesScreen(
     ComposableTestContent(
         modifier = Modifier.fillMaxSize(),
         uiState.venueList.size.toString(),
-        onEvent
+        { }
     )
 }

@@ -1,11 +1,8 @@
-package com.tkdev.salsospontanapp.domain.data
+package com.tkdev.salsospontanapp.domain.artists
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import com.tkdev.salsospontanapp.database.SpontanDatabase
-import com.tkdev.salsospontanapp.domain.artists.Artist
-import com.tkdev.salsospontanapp.domain.artists.ArtistDataSource
-import com.tkdev.salsospontanapp.domain.artists.toArtist
 import com.tkdev.salsospontanapp.util.CommonFlow
 import com.tkdev.salsospontanapp.util.toCommonFlow
 import kotlinx.coroutines.Dispatchers
