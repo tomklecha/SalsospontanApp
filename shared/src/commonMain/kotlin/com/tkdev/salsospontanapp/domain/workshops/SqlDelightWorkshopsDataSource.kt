@@ -1,11 +1,8 @@
-package com.tkdev.salsospontanapp.domain.data
+package com.tkdev.salsospontanapp.domain.workshops
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import com.tkdev.salsospontanapp.database.SpontanDatabase
-import com.tkdev.salsospontanapp.domain.workshops.Workshop
-import com.tkdev.salsospontanapp.domain.workshops.WorkshopsDataSource
-import com.tkdev.salsospontanapp.domain.workshops.toWorkshop
 import com.tkdev.salsospontanapp.util.CommonFlow
 import com.tkdev.salsospontanapp.util.toCommonFlow
 import kotlinx.coroutines.Dispatchers
