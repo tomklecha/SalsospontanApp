@@ -3,13 +3,10 @@ package com.tkdev.salsospontanapp.ui.splash
 import com.tkdev.salsospontanapp.db.artists
 import com.tkdev.salsospontanapp.db.venues
 import com.tkdev.salsospontanapp.db.workshops
-import com.tkdev.salsospontanapp.domain.artists.Artist
 import com.tkdev.salsospontanapp.domain.artists.ArtistDataSource
-import com.tkdev.salsospontanapp.domain.fullworkshop.FullWorkshop
-import com.tkdev.salsospontanapp.domain.venues.Venue
 import com.tkdev.salsospontanapp.domain.venues.VenuesDataSource
-import com.tkdev.salsospontanapp.domain.workshops.Workshop
 import com.tkdev.salsospontanapp.domain.workshops.WorkshopsDataSource
+import com.tkdev.salsospontanapp.remote.RemoteClient
 import com.tkdev.salsospontanapp.util.toCommonStateFlow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,6 +21,7 @@ class SplashViewModel(
     private val workshopsDataSource: WorkshopsDataSource,
     private val artistDataSource: ArtistDataSource,
     private val venuesDataSource: VenuesDataSource,
+    private val remoteClient: RemoteClient,
     private val coroutineScope: CoroutineScope?
 ) {
 
@@ -40,30 +38,16 @@ class SplashViewModel(
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), SplashState())
         .toCommonStateFlow()
 
-    private fun generateFullWorkshopsList(
-        workshops: List<Workshop>,
-        artists: List<Artist>,
-        venues: List<Venue>
-    ): List<FullWorkshop> {
-        val list: MutableList<FullWorkshop> = mutableListOf()
-        workshops.forEach { workshop ->
-            list.add(
-                FullWorkshop(
-                    workshop = workshop,
-                    artistPrimary = artists.first { it.uid == workshop.artistPrimaryUid },
-                    artistSecondary = artists.firstOrNull { it.uid == workshop.artistPrimaryUid },
-                    venue = venues.first { it.uid == workshop.venueUid }
-                )
-            )
-        }
-        return list.toList()
-    }
-
     fun onEvent(event: SplashEvent) {
         when (event) {
             is SplashEvent.PrepopulateData -> {
                 // cannot add venue with same uid - it is unique so it wont increment
                 viewModelScope.launch {
+                    /*
+                    Concurency - start adding artists and rest after call
+//                    val result = remoteClient.fetchData()
+                    TODO think about server side and costs
+                     */
                     artists.forEach {
                         artistDataSource.insertArtist(it)
                     }

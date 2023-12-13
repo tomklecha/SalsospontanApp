@@ -50,5 +50,7 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
 
+    implementation(libs.ktor.android)
+
     debugImplementation(libs.compose.ui.tooling)
 }
