@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Salsospontan</string>
+    <string name="home_screen_title">Home</string>
+    <string name="venues_screen_title">Venues</string>
+    <string name="artists_screen_title">Artists</string>
+    <string name="workshops_screen_title">Workshops</string>
+</resources>
