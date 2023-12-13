@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.sqlDelight)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -36,6 +37,9 @@ kotlin {
                 implementation(libs.koin.core)
                 implementation(libs.sqldelight.runtime)
                 implementation(libs.sqldelight.coroutinesextensions)
+                implementation(libs.ktor.core)
+                implementation(libs.ktor.serialization)
+                implementation(libs.ktor.serialization.json)
             }
         }
         val commonTest by getting {
@@ -46,6 +50,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.sqldelight.androiddriver)
+                implementation(libs.ktor.android)
             }
         }
         val iosX64Main by getting
@@ -59,6 +64,7 @@ kotlin {
 
             dependencies {
                 implementation(libs.sqldelight.nativedriver)
+                implementation(libs.ktor.ios)
             }
         }
     }
