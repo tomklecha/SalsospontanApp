@@ -19,6 +19,7 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
+    // "chmod +x gradlew" in project folder to make access for embedAndSignPodApple for xCode !!!
     cocoapods {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
@@ -40,6 +41,7 @@ kotlin {
                 implementation(libs.ktor.core)
                 implementation(libs.ktor.serialization)
                 implementation(libs.ktor.serialization.json)
+                implementation(libs.stately.common)
             }
         }
         val commonTest by getting {
@@ -65,6 +67,7 @@ kotlin {
             dependencies {
                 implementation(libs.sqldelight.nativedriver)
                 implementation(libs.ktor.ios)
+                implementation(libs.stately.common)
             }
         }
     }
