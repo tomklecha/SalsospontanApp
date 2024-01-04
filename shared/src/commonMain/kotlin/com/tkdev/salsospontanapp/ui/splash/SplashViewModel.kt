@@ -42,26 +42,35 @@ class SplashViewModel(
         when (event) {
             is SplashEvent.PrepopulateData -> {
                 // cannot add venue with same uid - it is unique so it wont increment
-                viewModelScope.launch {
-                    /*
+                if (state.value.loadingCompleted == null) {
+                    _state.update {
+                        it.copy(
+                            isLoading = true,
+                            loadingCompleted = false
+                        )
+                    }
+                    viewModelScope.launch {
+                        /*
                     Concurency - start adding artists and rest after call
 //                    val result = remoteClient.fetchData()
                     TODO think about server side and costs
                      */
-                    artists.forEach {
-                        artistDataSource.insertArtist(it)
-                    }
-                    venues.forEach {
-                        venuesDataSource.insertVenue(it)
-                    }
-                    workshops.forEach {
-                        workshopsDataSource.insertWorkshop(it)
-                    }
-                }.invokeOnCompletion {
-                    _state.update {
-                        it.copy(
-                            loadingCompleted = true
-                        )
+
+                        artists.forEach {
+                            artistDataSource.insertArtist(it)
+                        }
+                        venues.forEach {
+                            venuesDataSource.insertVenue(it)
+                        }
+                        workshops.forEach {
+                            workshopsDataSource.insertWorkshop(it)
+                        }
+                    }.invokeOnCompletion {
+                        _state.update {
+                            it.copy(
+                                loadingCompleted = true
+                            )
+                        }
                     }
                 }
             }
