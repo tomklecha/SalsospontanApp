@@ -20,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tkdev.salsospontanapp.domain.fullworkshop.FullWorkshop
-import com.tkdev.salsospontanapp.ui.ComposableTestContent
 import com.tkdev.salsospontanapp.ui.workshops.FullWorkshopState
 import com.tkdev.salsospontanapp.ui.workshops.WorkshopEvent
 
@@ -30,22 +29,12 @@ fun WorkshopsScreen(
     onEvent: (WorkshopEvent) -> Unit
 ) {
     val workshopList = uiState.fullWorkshopsList
-    Column(
-        modifier = Modifier.fillMaxWidth()
+    LazyColumn(
+        modifier = Modifier.fillMaxSize()
     ) {
-        ComposableTestContent(
-            modifier = Modifier,
-            workshopList.size.toString(),
-            { }
-        )
-        Spacer(modifier = Modifier.height(30.dp))
-        LazyColumn(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            items(workshopList, itemContent = {
-                WorkshopItem(it, onEvent)
-            })
-        }
+        items(workshopList, itemContent = {
+            WorkshopItem(it, onEvent)
+        })
     }
 }
 
@@ -82,7 +71,6 @@ fun WorkshopItem(workshop: FullWorkshop, onEvent: (WorkshopEvent) -> Unit) {
 }
 
 private val dimens = object {
-    val paddingTextSpacer = 4.dp
     val paddingColumnVertical = 8.dp
     val paddingHorizontal = 16.dp
 }

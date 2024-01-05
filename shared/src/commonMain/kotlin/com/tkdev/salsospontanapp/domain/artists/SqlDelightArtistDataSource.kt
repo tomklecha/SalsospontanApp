@@ -29,6 +29,7 @@ class SqlDelightArtistDataSource(
             uid = artist.uid,
             name = artist.name,
             description = artist.description,
+            instagramLink = artist.instagramLink,
             type = artist.getArtistType()
         )
     }

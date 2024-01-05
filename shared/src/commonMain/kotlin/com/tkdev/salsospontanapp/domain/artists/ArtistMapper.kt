@@ -14,7 +14,8 @@ fun ArtistEntity.toDancer(): Dancer {
     return Dancer(
         uid = uid,
         name = name,
-        description = description
+        description = description,
+        instagramLink = instagramLink
     )
 }
 

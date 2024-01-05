@@ -4,8 +4,8 @@ import com.tkdev.salsospontanapp.domain.artists.Artist
 
 sealed class ArtistEvent {
 
-    data object AddArtist : ArtistEvent()
     data class ShowArtist(val artist: Artist) : ArtistEvent()
+    data object HideArtist : ArtistEvent()
     data class SortByType(val presentationState: Int) : ArtistEvent()
     data object OnError : ArtistEvent()
 }

@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.tkdev.salsospontanapp.ui.artists.AndroidArtistViewModel
@@ -35,7 +36,8 @@ fun NavAppHost(navAppState: NavAppState, paddingValues: PaddingValues) {
         composable(route = TopLevelDestination.Artists.route) {
             val vm = koinInject<AndroidArtistViewModel>()
             val state by vm.state.collectAsState()
-            ArtistsScreen(state, vm::onEvent)
+            val uriHandler = LocalUriHandler.current
+            ArtistsScreen(state, vm::onEvent, navAppState::navigateToWorkshops, uriHandler::openUri)
         }
         composable(route = TopLevelDestination.Venues.route) {
             val vm = koinInject<AndroidVenuesViewModel>()

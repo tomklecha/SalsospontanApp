@@ -8,6 +8,7 @@ CREATE TABLE artistEntity(
     uid INTEGER NOT NULL PRIMARY KEY,
     name TEXT NOT NULL,
     description TEXT NOT NULL,
+    instagramLink TEXT NOT NULL,
     type TEXT NOT NULL
 );
 
@@ -23,9 +24,10 @@ INTO artistEntity
 uid,
 name,
 description,
+instagramLink,
 type
 )
-VALUES(?,?,?,?);
+VALUES(?,?,?,?,?);
 
 --
 --  VENUES
