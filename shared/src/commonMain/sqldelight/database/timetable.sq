@@ -17,8 +17,8 @@ SELECT *
 FROM artistEntity
 WHERE uid > 0;
 
-insertArtist:
-INSERT OR REPLACE
+prepopulateArtist:
+INSERT OR IGNORE
 INTO artistEntity
 (
 uid,
@@ -48,8 +48,8 @@ SELECT *
 FROM venueEntity
 WHERE uid > 0;
 
-insertVenue:
-INSERT OR REPLACE
+prepopulateVenue:
+INSERT OR IGNORE
 INTO venueEntity
 (
 uid,
@@ -94,8 +94,8 @@ SELECT *
 FROM workshopEntity
 WHERE uid > 0;
 
-insertWorkshop:
-INSERT OR REPLACE
+prepopulateWorkshop:
+INSERT OR IGNORE
 INTO workshopEntity
 (
 uid,

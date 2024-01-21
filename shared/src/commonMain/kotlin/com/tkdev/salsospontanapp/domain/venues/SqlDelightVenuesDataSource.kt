@@ -25,8 +25,8 @@ class SqlDelightVenuesDataSource(
             .toCommonFlow()
     }
 
-    override suspend fun insertVenue(venue: Venue) {
-        queries.insertVenue(
+    override suspend fun prepopulateVenue(venue: Venue) {
+        queries.prepopulateVenue(
             uid = venue.uid,
             name = venue.name,
             description = venue.description,

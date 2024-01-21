@@ -57,13 +57,13 @@ class SplashViewModel(
                      */
 
                         artists.forEach {
-                            artistDataSource.insertArtist(it)
+                            artistDataSource.prepopulateArtist(it)
                         }
                         venues.forEach {
-                            venuesDataSource.insertVenue(it)
+                            venuesDataSource.prepopulateVenue(it)
                         }
                         workshops.forEach {
-                            workshopsDataSource.insertWorkshop(it)
+                            workshopsDataSource.prepopulateWorkshop(it)
                         }
                     }.invokeOnCompletion {
                         _state.update {
