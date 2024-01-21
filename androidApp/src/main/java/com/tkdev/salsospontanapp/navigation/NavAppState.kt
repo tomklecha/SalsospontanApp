@@ -23,6 +23,9 @@ class NavAppState(val navController: NavHostController) {
 
     val topLevelDestinations: List<TopLevelDestination> = navigationBarItems
 
+    fun navigateToWorkshops() = navigateTo(TopLevelDestination.Workshops)
+    fun navigateToHome() = navigateTo(TopLevelDestination.Home)
+    fun navigateToVenues() = navigateTo(TopLevelDestination.Venues)
     fun navigateTo(destination: TopLevelDestination) {
         navController.navigate(destination.route) {
             // Pop up to the start destination of the graph to

@@ -20,16 +20,20 @@ class SqlDelightVenuesDataSource(
             .asFlow()
             .mapToList(Dispatchers.Default)
             .map { venues ->
-                venues.map { it.toVenue() }
+                venues.mapNotNull { it.toVenue() }
             }
             .toCommonFlow()
     }
 
-    override suspend fun insertVenue(venue: Venue) {
-        queries.insertVenue(
+    override suspend fun prepopulateVenue(venue: Venue) {
+        queries.prepopulateVenue(
             uid = venue.uid,
             name = venue.name,
-            description = venue.description
+            description = venue.description,
+            location = venue.location,
+            mapsLink = venue.mapsLink,
+            startDate = venue.startDate,
+            type = venue.getVenueType()
         )
     }
 }

@@ -7,5 +7,5 @@ import com.tkdev.salsospontanapp.util.CommonFlow
 interface VenuesDataSource {
     fun getAllVenues(): CommonFlow<List<Venue>>
 
-    suspend fun insertVenue(venue: Venue)
+    suspend fun prepopulateVenue(venue: Venue)
 }

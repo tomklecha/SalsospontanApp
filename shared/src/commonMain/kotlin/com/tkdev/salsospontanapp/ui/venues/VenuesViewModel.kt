@@ -36,7 +36,7 @@ class VenuesViewModel(
                 // cannot add venue with same uid - it is unique so it wont increment
                 viewModelScope.launch {
                     venues.forEach {
-                        venueDataSource.insertVenue(it)
+                        venueDataSource.prepopulateVenue(it)
                     }
                 }
             }

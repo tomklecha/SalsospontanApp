@@ -5,5 +5,5 @@ import com.tkdev.salsospontanapp.util.CommonFlow
 interface ArtistDataSource {
     fun getAllArtists(): CommonFlow<List<Artist>>
 
-    suspend fun insertArtist(artist: Artist)
+    suspend fun prepopulateArtist(artist: Artist)
 }

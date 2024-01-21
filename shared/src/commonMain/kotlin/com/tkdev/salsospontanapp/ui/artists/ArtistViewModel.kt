@@ -1,6 +1,5 @@
 package com.tkdev.salsospontanapp.ui.artists
 
-import com.tkdev.salsospontanapp.db.artists
 import com.tkdev.salsospontanapp.domain.artists.ArtistDataSource
 import com.tkdev.salsospontanapp.util.toCommonStateFlow
 import kotlinx.coroutines.CoroutineScope
@@ -9,7 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.update
 
 class ArtistViewModel(
     private val artistDataSource: ArtistDataSource,
@@ -32,12 +31,19 @@ class ArtistViewModel(
 
     fun onEvent(event: ArtistEvent) {
         when (event) {
-            is ArtistEvent.AddArtist -> {
-                // cannot add artist with same uid - it is unique so it wont increment
-                viewModelScope.launch {
-                    artists.forEach {
-                        artistDataSource.insertArtist(it)
-                    }
+            is ArtistEvent.ShowArtist -> {
+                _state.update {
+                    it.copy(
+                        presentArtist = event.artist,
+                        showBottomSheet = true
+                    )
+                }
+            }
+            is ArtistEvent.HideArtist -> {
+                _state.update {
+                    it.copy(
+                        showBottomSheet = false
+                    )
                 }
             }
             else -> {}

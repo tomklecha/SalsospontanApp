@@ -73,12 +73,6 @@ class WorkshopsViewModel(
     fun onEvent(event: WorkshopEvent) {
         when (event) {
             is WorkshopEvent.AddWorkshop -> {
-                // cannot add venue with same uid - it is unique so it wont increment
-                viewModelScope.launch {
-                    workshops.forEach {
-                        workshopsDataSource.insertWorkshop(it)
-                    }
-                }
             }
             is WorkshopEvent.AddToFavourite -> {
                 viewModelScope.launch {

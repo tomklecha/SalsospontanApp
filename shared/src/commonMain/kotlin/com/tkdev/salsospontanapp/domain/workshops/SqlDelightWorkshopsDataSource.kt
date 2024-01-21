@@ -24,8 +24,8 @@ class SqlDelightWorkshopsDataSource(
             .toCommonFlow()
     }
 
-    override suspend fun insertWorkshop(workshop: Workshop) {
-        queries.insertWorkshop(
+    override suspend fun prepopulateWorkshop(workshop: Workshop) {
+        queries.prepopulateWorkshop(
             uid = workshop.uid,
             name = workshop.name,
             description = workshop.description,

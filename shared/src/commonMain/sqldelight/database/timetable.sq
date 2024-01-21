@@ -8,6 +8,7 @@ CREATE TABLE artistEntity(
     uid INTEGER NOT NULL PRIMARY KEY,
     name TEXT NOT NULL,
     description TEXT NOT NULL,
+    instagramLink TEXT NOT NULL,
     type TEXT NOT NULL
 );
 
@@ -16,16 +17,17 @@ SELECT *
 FROM artistEntity
 WHERE uid > 0;
 
-insertArtist:
-INSERT OR REPLACE
+prepopulateArtist:
+INSERT OR IGNORE
 INTO artistEntity
 (
 uid,
 name,
 description,
+instagramLink,
 type
 )
-VALUES(?,?,?,?);
+VALUES(?,?,?,?,?);
 
 --
 --  VENUES
@@ -34,7 +36,11 @@ VALUES(?,?,?,?);
 CREATE TABLE venueEntity(
     uid INTEGER NOT NULL PRIMARY KEY,
     name TEXT NOT NULL,
-    description TEXT NOT NULL
+    description TEXT NOT NULL,
+    location TEXT NOT NULL,
+    mapsLink TEXT NOT NULL,
+    startDate TEXT NOT NULL,
+    type TEXT NOT NULL
 );
 
 getAllVenues:
@@ -42,15 +48,19 @@ SELECT *
 FROM venueEntity
 WHERE uid > 0;
 
-insertVenue:
-INSERT OR REPLACE
+prepopulateVenue:
+INSERT OR IGNORE
 INTO venueEntity
 (
 uid,
 name,
-description
+description,
+location,
+mapsLink,
+startDate,
+type
 )
-VALUES (?,?,?);
+VALUES (?,?,?,?,?,?,?);
 
 --
 --  WORKSHOP
@@ -84,8 +94,8 @@ SELECT *
 FROM workshopEntity
 WHERE uid > 0;
 
-insertWorkshop:
-INSERT OR REPLACE
+prepopulateWorkshop:
+INSERT OR IGNORE
 INTO workshopEntity
 (
 uid,

@@ -24,11 +24,12 @@ class SqlDelightArtistDataSource(
             .toCommonFlow()
     }
 
-    override suspend fun insertArtist(artist: Artist) {
-        queries.insertArtist(
+    override suspend fun prepopulateArtist(artist: Artist) {
+        queries.prepopulateArtist(
             uid = artist.uid,
             name = artist.name,
             description = artist.description,
+            instagramLink = artist.instagramLink,
             type = artist.getArtistType()
         )
     }
