@@ -4,7 +4,9 @@ import com.tkdev.salsospontanapp.domain.artists.Artist
 import com.tkdev.salsospontanapp.domain.artists.Dancer
 import com.tkdev.salsospontanapp.domain.artists.DeeJay
 import com.tkdev.salsospontanapp.domain.artists.Musician
+import com.tkdev.salsospontanapp.domain.venues.PartyVenue
 import com.tkdev.salsospontanapp.domain.venues.Venue
+import com.tkdev.salsospontanapp.domain.venues.WorkshopRoom
 import com.tkdev.salsospontanapp.domain.workshops.Workshop
 
 /*
@@ -34,10 +36,13 @@ val artists = listOf<Artist>(
 )
 
 val venues = listOf<Venue>(
-    Venue(401, "Trops", "WorkshopVenue"),
-    Venue(402, "Muchos", "WorkshopVenue"),
-    Venue(403, "Słodownia", "WorkshopVenue"),
-    Venue(404, "Stołówka", "WorkshopVenue")
+    PartyVenue(501, "Muchos", "WorkshopVenue", "", "geo:52.4105792,,16.9240901?q=Feliksa Nowowiejskiego 13/15, 61-732 Poznań + Muchos", ""),
+    PartyVenue(502, "Słodownia", "WorkshopVenue", "", "geo:52.4013678,16.9268275?q=Półwiejska 42, 61-888 Poznań + Stary Browar", ""),
+    PartyVenue(503, "Trops", "WorkshopVenue", "", "geo:52.3984525,16.9464452?q=Świętego Rocha 9, 62-142 Poznań + Trops", ""),
+    WorkshopRoom(401, "AWF", "WorkshopVenue"),
+    WorkshopRoom(402, "Sala Trops", "WorkshopVenue"),
+    WorkshopRoom(403, "104", "WorkshopVenue"),
+    WorkshopRoom(404, "Stołówka", "WorkshopVenue")
 )
 
 val workshops = listOf<Workshop>(

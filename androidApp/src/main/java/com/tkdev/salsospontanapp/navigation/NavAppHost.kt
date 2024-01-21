@@ -42,7 +42,8 @@ fun NavAppHost(navAppState: NavAppState, paddingValues: PaddingValues) {
         composable(route = TopLevelDestination.Venues.route) {
             val vm = koinInject<AndroidVenuesViewModel>()
             val state by vm.state.collectAsState()
-            VenuesScreen(state, { })
+            val uriHandler = LocalUriHandler.current
+            VenuesScreen(state, vm::onEvent, uriHandler::openUri)
         }
 //        TODO Implement differently splashScreen as this method do not work
 //        composable(route = NavigationRoute.SPLASH_ROUTE) {

@@ -20,7 +20,7 @@ class SqlDelightVenuesDataSource(
             .asFlow()
             .mapToList(Dispatchers.Default)
             .map { venues ->
-                venues.map { it.toVenue() }
+                venues.mapNotNull { it.toVenue() }
             }
             .toCommonFlow()
     }
@@ -29,7 +29,11 @@ class SqlDelightVenuesDataSource(
         queries.insertVenue(
             uid = venue.uid,
             name = venue.name,
-            description = venue.description
+            description = venue.description,
+            location = venue.location,
+            mapsLink = venue.mapsLink,
+            startDate = venue.startDate,
+            type = venue.getVenueType()
         )
     }
 }

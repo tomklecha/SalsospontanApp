@@ -36,7 +36,11 @@ VALUES(?,?,?,?,?);
 CREATE TABLE venueEntity(
     uid INTEGER NOT NULL PRIMARY KEY,
     name TEXT NOT NULL,
-    description TEXT NOT NULL
+    description TEXT NOT NULL,
+    location TEXT NOT NULL,
+    mapsLink TEXT NOT NULL,
+    startDate TEXT NOT NULL,
+    type TEXT NOT NULL
 );
 
 getAllVenues:
@@ -50,9 +54,13 @@ INTO venueEntity
 (
 uid,
 name,
-description
+description,
+location,
+mapsLink,
+startDate,
+type
 )
-VALUES (?,?,?);
+VALUES (?,?,?,?,?,?,?);
 
 --
 --  WORKSHOP

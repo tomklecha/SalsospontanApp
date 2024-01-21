@@ -24,8 +24,10 @@
 
                 <data android:scheme="http" />
                 <data android:scheme="https" />
+                <data android:scheme="geo" />
 
                 <data android:host="instagram.com" />
+                <data android:host="com.google.android.apps.maps" />
             </intent-filter>
         </activity>
     </application>
