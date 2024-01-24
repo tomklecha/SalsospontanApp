@@ -21,7 +21,7 @@ class AndroidWorkshopsViewModel(
         )
     }
 
-    val state = viewModel.fullWorkshopState
+    val state = viewModel.state
 
     fun onEvent(event: WorkshopEvent) {
         viewModel.onEvent(event)

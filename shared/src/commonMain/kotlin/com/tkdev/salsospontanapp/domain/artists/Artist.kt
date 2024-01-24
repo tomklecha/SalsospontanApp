@@ -6,7 +6,7 @@ const val TYPE_DEEJAY = "dj"
 const val TYPE_PLACEHOLDER = "placeholder"
 
 abstract class Artist(
-    open val uid: Long?,
+    open val uid: Long,
     open val name: String,
     open val description: String,
     open val instagramLink: String = "",
@@ -16,7 +16,7 @@ abstract class Artist(
 }
 
 data class Dancer(
-    override val uid: Long?,
+    override val uid: Long,
     override val name: String,
     override val description: String,
     override val instagramLink: String = ""
@@ -31,7 +31,7 @@ data class Dancer(
 }
 
 data class Musician(
-    override val uid: Long?,
+    override val uid: Long,
     override val name: String,
     override val description: String
 ) : Artist(
@@ -44,7 +44,7 @@ data class Musician(
 }
 
 data class DeeJay(
-    override val uid: Long?,
+    override val uid: Long,
     override val name: String,
     override val description: String
 ) : Artist(

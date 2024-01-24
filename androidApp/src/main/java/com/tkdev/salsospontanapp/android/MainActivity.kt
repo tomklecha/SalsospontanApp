@@ -26,7 +26,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
-import org.koin.compose.KoinContext
 
 class MainActivity : ComponentActivity() {
     private val workshopsData: WorkshopsDataSource by inject()
@@ -69,9 +68,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    KoinContext {
-                        MainActivityScreen()
-                    }
+                    MainActivityScreen()
                 }
             }
         }

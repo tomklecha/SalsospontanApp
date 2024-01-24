@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.updateAndGet
 
 class ArtistViewModel(
     private val artistDataSource: ArtistDataSource,
@@ -22,10 +23,16 @@ class ArtistViewModel(
         _state,
         artistDataSource.getAllArtists()
     ) { state, artists ->
-        state.copy(
-            artistList = artists,
-            presentationState = state.presentationState
-        )
+        if (state.artistList != artists) {
+            _state.updateAndGet {
+                state.copy(
+                    artistList = artists,
+                    presentationState = state.presentationState
+                )
+            }
+        } else {
+            state
+        }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), ArtistState())
         .toCommonStateFlow()
 
