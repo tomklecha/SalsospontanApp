@@ -65,12 +65,6 @@ class SplashViewModel(
                         workshops.forEach {
                             workshopsDataSource.prepopulateWorkshop(it)
                         }
-                    }.invokeOnCompletion {
-                        _state.update {
-                            it.copy(
-                                loadingCompleted = true
-                            )
-                        }
                     }
                 }
             }

@@ -1,6 +1,6 @@
 package com.tkdev.salsospontanapp.domain.workshops
 
-class Workshop(
+data class Workshop(
     val uid: Long,
     val name: String,
     val description: String,
